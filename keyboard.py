@@ -16,8 +16,11 @@ main_kb = InlineKeyboardMarkup(
             InlineKeyboardButton(text='Команды', callback_data='command'),
         ],
         [
-            InlineKeyboardButton(text='Темы', callback_data='tema')
-
+            InlineKeyboardButton(text='Темы', callback_data='tema'),
+            InlineKeyboardButton(text='Источник', callback_data="istochnik")
+        ],
+        [
+            InlineKeyboardButton(text="Команды", callback_data="command")
         ]
     ],
     resize_keyboard=True,
