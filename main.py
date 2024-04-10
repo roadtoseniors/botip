@@ -1,6 +1,5 @@
 import asyncio
 import logging
-import aiogram
 
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import StateFilter
@@ -51,7 +50,7 @@ async def cmd_callback(call: types.CallbackQuery, state: FSMContext):
                                        '/start-сам запуск бота\n'
                                        '/help-для найденных ошибок\n'
                                        '/istochnik-учебник, который всегда под рукой\n'
-                                       '/tema-все собранные темы для 1 курса')
+                                       '/tema-все собранные темы для 1 курса', reply_markup=keyboard.main_kb)
     elif call.data == 'istochnik':
         await call.message.answer(text="https://clck.ru/39fv4H")
     elif call.data == 'orfografia':
