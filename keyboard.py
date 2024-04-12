@@ -31,7 +31,7 @@ pravila_kb = InlineKeyboardMarkup(
     inline_keyboard=[
         [
             InlineKeyboardButton(text='Орфография',callback_data='orfografia'),
-            InlineKeyboardButton(text='Пунктуация', callback_data='pynktyacia')
+            InlineKeyboardButton(text='Пунктуация', callback_data='pynktyac')
         ]
     ],
     resize_keyboard=True,
@@ -50,7 +50,7 @@ orfogra_fia = InlineKeyboardMarkup(
 
     inline_keyboard=[
         [
-            InlineKeyboardButton(text='Лесика', callback_data='leksika'),
+            InlineKeyboardButton(text='Лескика', callback_data='leksika'),
             InlineKeyboardButton(text='Орфография и приставки', callback_data='orfografia')
         ],
         [
@@ -73,31 +73,34 @@ orfogra_fia = InlineKeyboardMarkup(
     resize_keyboard=True,
     one_time_keyboard=True
 )
-pynktyaci_a = InlineKeyboardMarkup(
+pynktyac_ia = InlineKeyboardMarkup(
+
     inline_keyboard=[
         [
-            InlineKeyboardButton(text='Знаки законченности', callback_data='tochka'),
-            InlineKeyboardButton(text='Знаки незаконченности', callback_data='zapatie')
+            InlineKeyboardButton(text='запятая', callback_data='tochka'),
+            InlineKeyboardButton(text='точка', callback_data='zapatie')
         ],
         [
-            InlineKeyboardButton(text='Двойные знаки', callback_data='two'),
-            InlineKeyboardButton(text='Простое предложение', callback_data='prost')
+            InlineKeyboardButton(text='кавычки', callback_data='two'),
+            InlineKeyboardButton(text='предложение', callback_data='prost')
         ],
-        [
-            InlineKeyboardButton(text='Пунктуация при обращении', callback_data='obrsh'),
-            InlineKeyboardButton(text='Сравнительные обороты', callback_data='')
-        ],
-        [
-            InlineKeyboardButton(text='Прямая речь', callback_data='pram'),
-            InlineKeyboardButton(text='Цитирование', callback_data='citirov')
-        ],
+        # # [
+        # #     InlineKeyboardButton(text='Обращение', callback_data='obrsh'),
+        # #     InlineKeyboardButton(text='обороты', callback_data='sss')
+        # # ],
+        # # [
+        # #     InlineKeyboardButton(text='Прямая речь', callback_data='pram'),
+        # #     InlineKeyboardButton(text='Цитирование', callback_data='citirov')
+        # # ],
         [
             InlineKeyboardButton(text='ССП', callback_data='ssp'),
             InlineKeyboardButton(text='СПП', callback_data='spp')
         ],
         [
-            InlineKeyboardButton(text='СБП', callback_data='sbp'),
-            InlineKeyboardButton(text='Виды синтаксической связи', callback_data='sintaks')
+            InlineKeyboardButton(text='СБП', callback_data='sbp')
+        ],
+        [
+            InlineKeyboardButton(text='Синтаксис', callback_data='sintaks')
         ]
     ],
     resize_keyboard=True,
