@@ -1,6 +1,6 @@
 import asyncio
 import logging
-import aiogram
+
 
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import StateFilter
@@ -8,9 +8,11 @@ from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 import stategroup
+from aiogram.fsm.context import FSMContext
+
 
 import keyboard
-# from stategroup import StepsForm
+#from  stategroup import StepsForm
 
 
 logging.basicConfig(level=logging.INFO)
@@ -35,9 +37,13 @@ async def command(message: types.Message):
                               '/pynktyacia-все темы раздела пунктуация\n')
 
 @dp.message(Command('help'))
-async def start(message: types.Message,state: FSMContext):
+async def start(message: types.Message, state: FSMContext):
     await message.answer("Если вы нашли ошибку в каком-либо разделе, то передайте её сюда, мы все исправим.")
     await state.set_state(stategroup.HelpForm.Text)
+
+@dp.message(Command('tema'))
+async def tem_a(message: types.Message):
+    await message.answer(text="Выберете раздел, который вам нужен", reply_markup=keyboard.pravila_kb)
 
 
 @dp.callback_query()
@@ -51,13 +57,13 @@ async def cmd_callback(call: types.CallbackQuery, state: FSMContext):
                                        '/start-сам запуск бота\n'
                                        '/help-для найденных ошибок\n'
                                        '/istochnik-учебник, который всегда под рукой\n'
-                                       '/tema-все собранные темы для 1 курса')
+                                       '/tema-все собранные темы для 1 курса', reply_markup=keyboard.main_kb)
     elif call.data == 'istochnik':
         await call.message.answer(text="https://clck.ru/39fv4H")
     elif call.data == 'orfografia':
         await call.message.answer(text='Выберете тему орфографии:', reply_markup=keyboard.orfogra_fia)
-    elif call.data == 'pynktyacia':
-        await call.message.answer(text='Выберете тему пунктуации:', reply_markup=keyboard.pynktyaci_a)
+    elif call.data == 'pynktyac':
+        await call.message.answer(text='Выберете тему пунктуации:', reply_markup=keyboard.pynktyac_ia)
     elif call.data == 'tema':
         await call.message.answer(text="Выберете раздел, который вам нужен", reply_markup=keyboard.pravila_kb)
 
@@ -74,9 +80,12 @@ async def cmd_inline_url(message: types.Message, bot: Bot):
     )
 
 
+
 async def main():
     await dp.start_polling(bot)
 
 
 if __name__ == "__main__":
     asyncio.run(main())
+
+
