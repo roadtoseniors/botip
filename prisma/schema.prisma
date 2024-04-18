@@ -5,12 +5,28 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider             = "prisma-client-py"
+  interface            = "asyncio"
+  recursive_type_depth = 5
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgresql://root:1234@localhost:5432/mydb"
+}
+
+enum ROLE {
+  USER
+  ADMIN
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  username String @unique
+  telegram_id Int @unique
+  role ROLE @default(value: USER)
+  created_at DateTime @default(now())
+  updated_at  DateTime @updatedAt
 }
 
 model SourceBook {
@@ -18,6 +34,8 @@ model SourceBook {
   title String
   description String
   books Book[]
+  created_at DateTime @default(now())
+  updated_at  DateTime @updatedAt
 }
 
 model Book {
@@ -27,6 +45,9 @@ model Book {
   themes Theme[]
   source_book SourceBook @relation(fields: [source_book_id], references: [id])
   source_book_id Int
+
+  created_at DateTime @default(now())
+  updated_at  DateTime @updatedAt
 }
 
 model Theme {
@@ -36,4 +57,7 @@ model Theme {
   image String
   book Book @relation(fields: [book_id], references: [id])
   book_id Int
+
+  created_at DateTime @default(now())
+  updated_at  DateTime @updatedAt
 }

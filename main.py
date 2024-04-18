@@ -6,6 +6,7 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters import StateFilter
 from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
+from aiogram.fsm.state import StatesGroup, State
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 import stategroup
 from aiogram.fsm.context import FSMContext
@@ -14,11 +15,24 @@ from aiogram.fsm.context import FSMContext
 import keyboard
 #from  stategroup import StepsForm
 
+from database import prisma_client
+
+from dotenv import dotenv_values
+
+config = dotenv_values('.env')
+
 
 logging.basicConfig(level=logging.INFO)
-bot = Bot(token='6961486369:AAF14quNlNE8xurAd243y1H6qUQBFQfMc3g')
+bot = Bot(token=config['BOT_TOKEN'])
 dp = Dispatcher()
 
+
+class SourceBookForm(StatesGroup):
+    title = State()
+    description = State()
+
+class BookForm(StatesGroup):
+    #TODO book form and theme form states
 
 
 @dp.message(Command('start'))
@@ -80,8 +94,46 @@ async def cmd_inline_url(message: types.Message, bot: Bot):
     )
 
 
+@dp.message(Command('auth'))
+async def auth(message: types.Message, bot: Bot):
+    checked_user = await prisma_client.user.find_unique(
+        where={
+            'telegram_id': message.from_user.id
+        }
+    )
+
+    if not checked_user:
+        user = await prisma_client.user.create(
+            data={
+                'username': message.from_user.username,
+                'telegram_id': message.from_user.id,
+            }
+        )
+
+        if user:
+            await message.answer('Вы успешно зарегистрировались!')
+        else:
+            await message.answer('Что-то пошло не так, обратитсь в поддержку бота или оппробуйте снова!')
+
+    else:
+        await message.answer(f'Вы уже зарегистрированы!\nUserInfo:\nusername={checked_user.username}\ntelegram_id={checked_user.telegram_id}')
+@dp.message(Command('add_new_source_book'))
+async def add_new_source_book(message: types.Message, bot: Bot):
+    checked_user = await prisma_client.user.find_unique(
+        where={
+            'telegram_id': message.from_user.id
+        }
+    )
+
+    if not checked_user or checked_user.role != 'ADMIN':
+        await message.answer('У вас недостаточно прав для совершения данной операции!')
+        return
+    else:
+        await message.answer('Пожалуйста, введите название желаемой коллекции!')
+
 
 async def main():
+    await prisma_client.connect()
     await dp.start_polling(bot)
 
 
