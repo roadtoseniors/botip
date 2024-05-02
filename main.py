@@ -23,7 +23,7 @@ config = dotenv_values('.env')
 
 
 logging.basicConfig(level=logging.INFO)
-bot = Bot(token=config['BOT_TOKEN'])
+bot = Bot(token='6961486369:AAF14quNlNE8xurAd243y1H6qUQBFQfMc3g')
 dp = Dispatcher()
 
 
