@@ -80,18 +80,109 @@ async def cmd_callback(call: types.CallbackQuery, state: FSMContext):
         await call.message.answer(text='Выберете тему пунктуации:', reply_markup=keyboard.pynktyac_ia)
     elif call.data == 'tema':
         await call.message.answer(text="Выберете раздел, который вам нужен", reply_markup=keyboard.pravila_kb)
-
-
-@dp.message(Command("istochnik"))
-async def cmd_inline_url(message: types.Message, bot: Bot):
-    # builder = InlineKeyboardBuilder()
-    # builder.row(types.InlineKeyboardButton(
-    #     text="Учебник по русскому", url='https://clck.ru/39fv4H')
-    # )
-    await message.answer(
-        "Источник, где можно удостовериться в правильности информации",
-        reply_markup=keyboard.istochnik_kb
-    )
+        elif call.data == 'tochka':
+        filee_path = "photobd/tochka.jpg"
+        filee_path2 = "photobd/tochka2.jpg"
+        filee_path3 = "photobd/tochka3.jpg"
+        photo1 = InputMediaPhoto(type="photo", media=types.FSInputFile(path=filee_path), caption="")
+        photo2 = InputMediaPhoto(type="photo", media=types.FSInputFile(path=filee_path2))
+        photo3 = InputMediaPhoto(type="photo", media=types.FSInputFile(path=filee_path3))
+        media = [photo1, photo2, photo3]
+        await call.bot.send_media_group(call.message.chat.id, media)
+    elif call.data == 'double':
+        await call.bot.send_photo(call.message.chat.id,
+                                  photo=types.FSInputFile(
+                                      path="photobd/double.jpg"
+                                  ))
+    elif call.data == 'tire':
+        await call.bot.send_photo(call.message.chat.id,
+                                  photo=types.FSInputFile(
+                                      path='photobd/tire.jpg'
+                                  ))
+    elif call.data == 'prost':
+        file_path1 = 'photobd/prost.jpg'
+        file_path2 = 'photobd/prost2.jpg'
+        photo1 = InputMediaPhoto(type='photo', media=types.FSInputFile(path=file_path1), caption='')
+        photo2 = InputMediaPhoto(type='photo', media=types.FSInputFile(path=file_path2))
+        media = [photo1, photo2]
+        await call.bot.send_media_group(call.message.chat.id, media)
+        elif call.data == "opred":
+        file_path1 = 'photobd/opred.jpg'
+        file_path2 = 'photobd/opred2.jpg'
+        file_path3 = 'photobd/opred3.jpg'
+        file_path4 = 'photobd/opred4.jpg'
+        photo1 = InputMediaPhoto(type='photo', media=types.FSInputFile(path=file_path1), caption='')
+        photo2 = InputMediaPhoto(type='photo', media=types.FSInputFile(path=file_path2))
+        photo3 = InputMediaPhoto(type='photo', media=types.FSInputFile(path=file_path3))
+        photo4 = InputMediaPhoto(type='photo', media=types.FSInputFile(path=file_path4))
+        media = [photo1, photo2, photo3, photo4]
+        await call.bot.send_media_group(call.sage.chat.id, media)
+    elif call.data == 'obsto':
+        await call.bot.send_photo(call.message.chat.id,
+                                  photo=types.FSInputFile(
+                                      path='photobd/obsto.jpg'
+                                  ))
+    elif call.data == "vvod":
+        file_path1 = 'photobd/vvod.jpg'
+        file_path2 = 'photobd/vvod2.jpg'
+        file_path3 = 'photobd/vvod3.jpg'
+        file_path4 = 'photobd/vvod4.jpg'
+        file_path5 = 'photobd/vvod5.jpg'
+        photo1 = InputMediaPhoto(type='photo', media=types.FSInputFile(path=file_path1), caption='')
+        photo2 = InputMediaPhoto(type='photo', media=types.FSInputFile(path=file_path2))
+        photo3 = InputMediaPhoto(type='photo', media=types.FSInputFile(path=file_path3))
+        photo4 = InputMediaPhoto(type='photo', media=types.FSInputFile(path=file_path4))
+        photo5 = InputMediaPhoto(type='photo', media=types.FSInputFile(path=file_path5))
+        media = [photo1, photo2, photo3, photo4, photo5]
+        await call.bot.send_media_group(call.message.chat.id, media)
+        elif call.data == 'obrash':
+        file_path1 = 'photobd/obrash.jpg'
+        file_path2 = 'photobd/obrash2.jpg'
+        file_path3 = 'photobd/obrash3.jpg'
+        file_path4 = 'photobd/obrash4.jpg'
+        photo1 = InputMediaPhoto(type='photo', media=types.FSInputFile(path=file_path1), caption='')
+        photo2 = InputMediaPhoto(type='photo', media=types.FSInputFile(path=file_path2))
+        photo3 = InputMediaPhoto(type='photo', media=types.FSInputFile(path=file_path3))
+        photo4 = InputMediaPhoto(type='photo', media=types.FSInputFile(path=file_path4))
+        media = [photo1, photo2, photo3, photo4]
+        await call.bot.send_media_group(call.message.chat.id, media)
+    elif call.data == 'sbp':
+        filee_path = "photobd/sbp.jpg"
+        filee_path2 = "photobd/sbp2.jpg"
+        filee_path3 = "photobd/sbp3.jpg"
+        photo1 = InputMediaPhoto(type="photo", media=types.FSInputFile(path=filee_path), caption="")
+        photo2 = InputMediaPhoto(type="photo", media=types.FSInputFile(path=filee_path2))
+        photo3 = InputMediaPhoto(type="photo", media=types.FSInputFile(path=filee_path3))
+        media = [photo1, photo2, photo3]
+        await call.bot.send_media_group(call.message.chat.id, media)
+    elif call.data == 'sintaks':
+        await call.bot.send_photo(call.message.chat.id,
+                                  photo=types.FSInputFile(
+                                      path='photobd/sintaks.jpg'
+                                  ))
+        elif call.data == 'spp':
+        filee_path = "photobd/spp.jpg"
+        filee_path2 = "photobd/spp2.jpg"
+        filee_path3 = "photobd/spp3.jpg"
+        photo1 = InputMediaPhoto(type="photo", media=types.FSInputFile(path=filee_path), caption="")
+        photo2 = InputMediaPhoto(type="photo", media=types.FSInputFile(path=filee_path2))
+        photo3 = InputMediaPhoto(type="photo", media=types.FSInputFile(path=filee_path3))
+        media = [photo1, photo2, photo3]
+        await call.bot.send_media_group(call.message.chat.id, media)
+    elif call.data == 'sravn':
+        file_path1 = 'photobd/sravn.jpg'
+        file_path2 = 'photobd/sravn2.jpg'
+        photo1 = InputMediaPhoto(type='photo', media=types.FSInputFile(path=file_path1), caption='')
+        photo2 = InputMediaPhoto(type='photo', media=types.FSInputFile(path=file_path2))
+        media = [photo1, photo2]
+        await call.bot.send_media_group(call.message.chat.id, media)
+    elif call.data == 'ssp':
+        file_path1 = 'photobd/ssp.jpg'
+        file_path2 = 'photobd/ssp2.jpg'
+        photo1 = InputMediaPhoto(type='photo', media=types.FSInputFile(path=file_path1), caption='')
+        photo2 = InputMediaPhoto(type='photo', media=types.FSInputFile(path=file_path2))
+        media = [photo1, photo2]
+        await call.bot.send_media_group(call.message.chat.id, media)
 
 
 @dp.message(Command('auth'))
